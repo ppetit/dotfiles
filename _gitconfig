@@ -1,20 +1,28 @@
+[gui]
 [user]
-    name = Kevin C. Smith
-    email = smithkevinc@gmail.com
-
+	name = Patrick Petit
+	email = patrick.petit@bull.net
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    ui = auto
-
-[push]
-	default = simple
-
+	diff = auto
+	status = auto
+	branch = auto
+[merge]
+	tool = opendiff
 [core]
-    editor = vim
-    pager = less -R
-
+	excludesfile = /Users/Patrick/.gitignore_global
+	editor = vim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[http]
+	proxy = http://10.197.217.62:3128/
+[https]
+	proxy = https://10.197.217.62:3128/
+[credential]
+	helper = osxkeychain
 [alias]
     diverges = !bash -c 'diff -u <(git rev-list --first-parent "${1}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
     st = status --ignore-submodules
